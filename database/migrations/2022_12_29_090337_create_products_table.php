@@ -18,13 +18,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description', 1000);
-            $table->integer('quantity')->unsigned();
+            $table->unsignedInteger('quantity');
             $table->string('status')->default(Product::UNAVAILABLE_PRODUCT);
-//            $table->string('image');
-            $table->integer('seller_id')->unsigned();
+//          $table->string('image');
+            $table->unsignedBigInteger('seller_id');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('seller_id')->references('id')->on('users');
         });
     }
 
