@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Mail\UserCreated;
 use App\Models\Product;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
 
                 $product->save();
             }
+        });
+
+        User::created(function ($user) {
+            Mail::to($user)->send(new UserCreated($user));
         });
     }
 }
