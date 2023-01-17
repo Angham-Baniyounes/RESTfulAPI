@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Transformers\TransactionTransformer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
+    public $transformer = TransactionTransformer::class;
+
     use HasFactory;
 
     use SoftDeletes;
